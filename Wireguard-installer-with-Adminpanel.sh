@@ -166,6 +166,7 @@ WantedBy=multi-user.target">"/etc/systemd/system/AdminBotXAKEP.service"
 			sudo systemctl enable AdminBotXAKEP.service
 			clear
 			echo "Installed Bot"
+		fi
 		
 		
 		apt-get install -y wireguard iptables resolvconf qrencode
