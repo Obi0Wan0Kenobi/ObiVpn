@@ -262,7 +262,7 @@ async def Work_with_Message(m: types.Message):
         db = await aiosqlite.connect(DBCONNECT)
         await db.execute(f"INSERT INTO static_profiles (name) values (?)", (m.text,))
         await db.commit()
-        #check = subprocess.call(f'./addusertovpn.sh {str(m.text)}', shell=True)
+        check = subprocess.call(f'./addusertovpn.sh {str(m.text)}', shell=True)
         await bot.delete_state(m.from_user.id)
         await bot.send_message(m.from_user.id,
                                "Пользователь добавлен!", reply_markup=await buttons.admin_buttons_static_users())
@@ -456,7 +456,7 @@ async def AddTimeToUser(tgid,timetoadd):
     if int(userdat.subscription) < int(time.time()):
         passdat = int(time.time()) + timetoadd
         await db.execute(f"Update userss set subscription = ?, banned=false, notion_oneday=false where tgid=?",(str(int(time.time()) + timetoadd), userdat.tgid))
-        #check = subprocess.call(f'./addusertovpn.sh {str(userdat.tgid)}', shell=True)
+        check = subprocess.call(f'./addusertovpn.sh {str(userdat.tgid)}', shell=True)
         await bot.send_message(userdat.tgid, e.emojize( 'Данны для входа были обновлены, скачайте новый файл авторизации через раздел "Как подключить :gear:"'))
     else:
         passdat = int(userdat.subscription) + timetoadd
@@ -496,7 +496,7 @@ async def DeleteUserYesOrNo(call: types.CallbackQuery):
         await db.execute(f"delete from static_profiles where id=?", (int(idstatic),))
         await db.commit()
         await bot.delete_message(call.message.chat.id,call.message.id)
-        #check = subprocess.call(f'./deleteuserfromvpn.sh {str(idstatic)}', shell=True)
+        check = subprocess.call(f'./deleteuserfromvpn.sh {str(idstatic)}', shell=True)
         await bot.answer_callback_query(call.id,"Пользователь удален!")
         return
     if "DELETNO:" in call.data:
@@ -619,7 +619,7 @@ def checkTime():
                     db = sqlite3.connect(DBCONNECT)
                     db.execute(f"UPDATE userss SET banned=true where tgid=?",(i[1],))
                     db.commit()
-                    #check = subprocess.call(f'./deleteuserfromvpn.sh {str(i[1])}', shell=True)
+                    check = subprocess.call(f'./deleteuserfromvpn.sh {str(i[1])}', shell=True)
 
                     dateto = datetime.utcfromtimestamp(int(i[1])+CONFIG['UTC_time']*3600).strftime('%d.%m.%Y %H:%M')
                     Butt_main = types.ReplyKeyboardMarkup(resize_keyboard=True)

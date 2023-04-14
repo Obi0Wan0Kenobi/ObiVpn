@@ -4,7 +4,7 @@ import time
 import subprocess
 
 
-#check = subprocess.call(f'./deleteuserfromvpn.sh {str(i[1])}', shell=True)
+
 
 CONFIG={}
 DBCONNECT="data.sqlite"
