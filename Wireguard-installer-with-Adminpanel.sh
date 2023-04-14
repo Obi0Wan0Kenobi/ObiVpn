@@ -118,6 +118,7 @@ function installQuestions() {
 		read -rp "Vvedite API-klyuch ot vashego Telegram bota: " -e API_TOKEN_BOT
 		read -rp "Vvedite klyuch ot vashej platezhnoj sistemy(Esli ostavit' pustym, to pol'zovateli ne smogut proizvesti onlajn oplatu): " -e API_PAYMENT_BOT
 		read -rp "Vvedite Telegram-id administratora: " -e ADMIN_ID_BOT
+	fi
 	echo ""
 	echo "Otlichno vse osnovnye danny vvedeny!"
 	read -n1 -r -p "Press any key..."
