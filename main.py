@@ -332,6 +332,7 @@ async def Work_with_Message(m: types.Message):
                 #print(datetime.utcfromtimestamp(int(time.time())).strftime('%d.%m.%Y %H:%M'))
                 if int(i[2])>int(time.time()):
                     readymes+=f"{i[6]} ({i[5]}|<code>{str(i[1])}</code>) - {datetime.utcfromtimestamp(int(user_dat.subscription)+CONFIG['UTC_time']*3600).strftime('%d.%m.%Y %H:%M')}\n\n"
+            await bot.send_message(m.from_user.id,e.emojize(readymes),parse_mode="HTML")
         if e.demojize(m.text) == "Вывести статичных пользователей":
             db = await aiosqlite.connect(DBCONNECT)
             c =  await db.execute(f"select * from static_profiles")
@@ -496,7 +497,7 @@ async def DeleteUserYesOrNo(call: types.CallbackQuery):
         await db.execute(f"delete from static_profiles where id=?", (int(idstatic),))
         await db.commit()
         await bot.delete_message(call.message.chat.id,call.message.id)
-        check = subprocess.call(f'./deleteuserfromvpn.sh {str(idstatic)}', shell=True)
+        check = subprocess.call(f'./deleteuserfromvpn.sh {str(staticuser[1])}', shell=True)
         await bot.answer_callback_query(call.id,"Пользователь удален!")
         return
     if "DELETNO:" in call.data:
