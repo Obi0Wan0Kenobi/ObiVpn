@@ -139,11 +139,12 @@ function installWireGuard() {
 			wget https://github.com/Obi0Wan0Kenobi/ObiVpn/archive/refs/heads/master.zip
 			unzip master.zip
 			rm master.zip
+			pip install -r "$(pwd)/ObiVpn-master/requirements.txt"
 			echo "{
 \"admin_tg_id\": ${ADMIN_ID_BOT},
 \"one_month_cost\": 120,
 \"trial_period\": 2700,
-\"UTC_time\": 5,
+\"UTC_time\": 3,
 \"tg_token\": \"${API_TOKEN_BOT}\",
 \"tg_shop_token\": \"${API_PAYMENT_BOT}\"
 }" >"$(pwd)/ObiVpn-master/config.json"
