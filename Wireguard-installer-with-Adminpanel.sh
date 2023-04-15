@@ -135,7 +135,7 @@ function installWireGuard() {
 		apt-get update
 		if [[ ${BOT_AUTO_INSTALL} == '1' ]]; then
 			apt-get install unzip
-			apt-get install python3-pip
+			apt-get install python3-pip -y
 			wget https://github.com/Obi0Wan0Kenobi/ObiVpn/archive/refs/heads/master.zip
 			unzip master.zip
 			rm master.zip
