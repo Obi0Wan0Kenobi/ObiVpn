@@ -59,6 +59,7 @@ class MyStates(StatesGroup):
 @bot.message_handler(commands=['start'])
 async def start(message:types.Message):
     if message.chat.type == "private":
+        await bot.delete_state(message.from_user.id)
         user_dat = await User.GetInfo(message.chat.id)
         if user_dat.registered:
             await bot.send_message(message.chat.id,"Информация о подписке",parse_mode="HTML",reply_markup=await main_buttons(user_dat))
@@ -622,7 +623,7 @@ def checkTime():
                     db.commit()
                     check = subprocess.call(f'./deleteuserfromvpn.sh {str(i[1])}', shell=True)
 
-                    dateto = datetime.utcfromtimestamp(int(i[1])+CONFIG['UTC_time']*3600).strftime('%d.%m.%Y %H:%M')
+                    dateto = datetime.utcfromtimestamp(int(i[2])+CONFIG['UTC_time']*3600).strftime('%d.%m.%Y %H:%M')
                     Butt_main = types.ReplyKeyboardMarkup(resize_keyboard=True)
                     Butt_main.add(
                             types.KeyboardButton(e.emojize(f":red_circle: Закончилась: {dateto} МСК:red_circle:")))
