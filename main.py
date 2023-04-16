@@ -361,7 +361,7 @@ async def Work_with_Message(m: types.Message):
             return
 
         if e.demojize(m.text) =="Статичные пользователи":
-            await bot.send_message(m.from_user.id,"Введите Telegram Id пользователя:",reply_markup=await buttons.admin_buttons_static_users())
+            await bot.send_message(m.from_user.id,"Выберите пункт меню:",reply_markup=await buttons.admin_buttons_static_users())
             return
 
         if e.demojize(m.text) =="Добавить пользователя :plus:":
