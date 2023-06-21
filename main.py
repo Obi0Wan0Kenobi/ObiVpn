@@ -327,7 +327,7 @@ async def Work_with_Message(m: types.Message):
                         readymass.append(readymes)
                         readymes = ""
                     readymes += f"{i[6]} ({i[5]}|<code>{str(i[1])}</code>)\n"
-
+            readymass.append(readymes)
             for i in readymass:
                 await bot.send_message(m.from_user.id, e.emojize(i), reply_markup=await buttons.admin_buttons(),parse_mode="HTML")
             return
@@ -346,6 +346,7 @@ async def Work_with_Message(m: types.Message):
                         readymass.append(readymes)
                         readymes = ""
                     readymes+=f"{i[6]} ({i[5]}|<code>{str(i[1])}</code>) - {datetime.utcfromtimestamp(int(i[2])+CONFIG['UTC_time']*3600).strftime('%d.%m.%Y %H:%M')}\n\n"
+            readymass.append(readymes)
             for i in readymass:
                 await bot.send_message(m.from_user.id,e.emojize(i),parse_mode="HTML")
         if e.demojize(m.text) == "Вывести статичных пользователей":
